@@ -35,6 +35,7 @@ class SlidingUpPanel extends React.Component {
     backdropOpacity: PropTypes.number,
     contentStyle: PropTypes.any,
     children: PropTypes.oneOfType([PropTypes.element, PropTypes.func]),
+    startTop: PropTypes.number,
   }
 
   static defaultProps = {
@@ -77,7 +78,7 @@ class SlidingUpPanel extends React.Component {
     }
 
     const { top, bottom } = props.draggableRange
-    const collapsedPosition = this.props.startCollapsed ? -bottom : -top
+    const collapsedPosition = this.props.startCollapsed ? -bottom : (this.props.startTop ? -this.props.startTop : -top)
 
     this._animatedValueY = this.state.visible ? collapsedPosition : -bottom
     this._translateYAnimation = new Animated.Value(this._animatedValueY)
