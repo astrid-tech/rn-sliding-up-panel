@@ -179,7 +179,7 @@ class SlidingUpPanel extends React.PureComponent {
   _onPanResponderMove(evt, gestureState) {
     const { top, bottom } = this.props.draggableRange
     const delta = this._initialDragPosition - gestureState.dy
-    const newValue = clamp(delta, top, bottom)
+    const newValue = clamp(delta, bottom, top)
 
     this.props.animatedValue.setValue(newValue)
   }
