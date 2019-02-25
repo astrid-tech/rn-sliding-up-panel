@@ -38,7 +38,8 @@ class SlidingUpPanel extends React.PureComponent {
     minimumDistanceThreshold: PropTypes.number,
     avoidKeyboard: PropTypes.bool,
     onDragStart: PropTypes.func,
-    onDragEnd: PropTypes.func,
+	onDragEnd: PropTypes.func,
+	onClose: PropTypes.func,
     allowMomentum: PropTypes.bool,
     allowDragging: PropTypes.bool,
     showBackdrop: PropTypes.bool,
@@ -55,7 +56,8 @@ class SlidingUpPanel extends React.PureComponent {
     minimumDistanceThreshold: Constants.DEFAULT_MINIMUM_DISTANCE_THRESHOLD,
     avoidKeyboard: true,
     onDragStart: () => {},
-    onDragEnd: () => {},
+	onDragEnd: () => {},
+	onClose: () => {},
     allowMomentum: true,
     allowDragging: true,
     showBackdrop: true,
@@ -223,7 +225,8 @@ class SlidingUpPanel extends React.PureComponent {
     const isAtBottom = this._isAtBottom(value)
 
     if (isAtBottom) {
-      Keyboard.dismiss()
+	  Keyboard.dismiss()
+	  this.props.onClose()
     }
 
     if (this._backdrop == null) {
